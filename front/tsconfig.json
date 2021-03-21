@@ -9,6 +9,10 @@
         "node_modules/resource-loader/typings/mini-signals.d.ts"
       ]
     },
+    "typeRoots": [
+      "./types",
+      "./node_modules/@types"
+    ],
     "baseUrl": "./",
     "outDir": "../docs",
     "rootDir": "./src",
@@ -25,5 +29,9 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "typings"
+  ]
 }
