@@ -15,6 +15,7 @@ jobs:
         run: |
           cd front
           yarn install
+          mkdir dist
           yarn build
       - name: Deploy to GitHub Pages
         if: success()
