@@ -12,7 +12,10 @@ jobs:
         with:
           node-version: "14"
       - name: Build
-        run: yarn build
+        run: |
+          cd front
+          yarn install
+          yarn build
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
