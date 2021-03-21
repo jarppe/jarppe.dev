@@ -1,13 +1,33 @@
 ---
-name: learn-github-actions
-on: [push]
+name: website
+on: push
 jobs:
-  check-bats-version:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Gen dummy page
+        run: |
+          mkdir dist
+          cat > dist/index.html <<EOL
+          <!doctype html>
+          <html>
+            <head>
+              <title>GitHub Pages deployed!</title>
+            </head>
+            <body>
+              <p>GitHub Pages with <strong>${{ github.sha }}</strong> commit ID has been deployed through <a href="https://github.com/marketplace/actions/github-pages">GitHub Pages action</a> successfully.</p>
+            </body>
+          </html>
+          EOL
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
         with:
-          node-version: "14"
-      - run: node --version
+          target_branch: gh-pages
+          build_dir: dist
+          fqdn: jarppe.dev
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ...
