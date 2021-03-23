@@ -1,60 +1,64 @@
-import * as PIXI from 'pixi.js'
-import './assets/favicon.ico'
-import Bunny from './assets/bunny.png'
-
-
-console.log('Here we go again.')
-console.log('PIXI:', PIXI.VERSION)
-console.log('Bunny', Bunny.toString())
+import * as PIXI from "pixi.js"
+import "./index.scss"
+import "./assets/favicon.ico"
+import Bunny from "./assets/bunny.png"
+import "./console"
 
 
 const app = new PIXI.Application({
   width:           window.innerWidth,
   height:          window.innerHeight,
-  backgroundColor: 0x1099bb,
   resolution:      window.devicePixelRatio || 1,
+  backgroundAlpha: 0.0,
 })
 
-document.body.appendChild(app.view)
+document.getElementById("canvasHolder")!.appendChild(app.view)
 
-const container = new PIXI.Container()
+const thing = new PIXI.Graphics();
+app.stage.addChild(thing);
+thing.x = window.innerWidth / 4;
+thing.y = window.innerHeight / 4;
 
-app.stage.addChild(container)
+let count = 0;
 
+app.ticker.add(() => {
+  const s = Math.sin(count),
+        c = Math.cos(count),
+        a = 120,
+        b = 100,
+        m = 20,
+        sm = s * m,
+        cm = c * m,
+        r = 5
 
-// Create a new texture
-const texture = PIXI.Texture.from(Bunny.toString())
+  count += 0.02;
 
-// Create a 5x5 grid of bunnies
-for (let i = 0; i < 25; i++) {
-  const bunny = new PIXI.Sprite(texture)
-  bunny.anchor.set(0.5)
-  bunny.x = (i % 5) * 40
-  bunny.y = Math.floor(i / 5) * 40
-  container.addChild(bunny)
-}
+  thing.clear();
+  thing.lineStyle(1, 0x007F26, 0.3);
 
-console.log("app.screen.width", app.screen.width)
-console.log("window.innerWidth", window.innerWidth)
+  thing.moveTo(-a + sm, -b + cm);
+  thing.lineTo(a + cm, -b + sm);
+  thing.lineTo(a + sm, b + cm);
+  thing.lineTo(-a + cm, b + sm);
+  thing.closePath();
 
-// Move container to the center
-container.x = app.screen.width / 4
-container.y = app.screen.height / 4
+  thing.beginFill(0x00ef56, 0.3);
+  thing.drawCircle(-a + sm, -b + cm, r)
+  thing.drawCircle(a + cm, -b + sm, r)
+  thing.drawCircle(a + sm, b + cm, r)
+  thing.drawCircle(-a + cm, b + sm, r)
 
-// Center bunny sprite in local container coordinates
-container.pivot.x = container.width / 2
-container.pivot.y = container.height / 2
-
-// Listen for animate update
-app.ticker.add((delta) => {
-  container.rotation += 0.005 * delta
-})
+  thing.rotation = count * 0.2;
+});
 
 
 const resize = () => {
-  app.view.width = window.innerWidth
-  app.view.height = window.innerHeight
+  const width = window.innerWidth,
+        height = window.innerHeight
+  app.view.width = width
+  app.view.height = height
+  thing.x = width / 4;
+  thing.y = height / 4;
 }
 
 window.onresize = resize
-
