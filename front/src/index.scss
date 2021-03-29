@@ -1,8 +1,4 @@
-@font-face {
-  font-family: "digit";
-  src:         url("./assets/digit.ttf");
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 * {
   padding:    0;
@@ -14,12 +10,14 @@
 
 $front: #00ef56;
 $glow:  #007F26;
+$star:  #807102;
 
 @mixin crt {
   color:          $front;
-  font-family:    "digit", monospace;
+  font-family:    "Press Start 2P", monospace;
+  font-size:      90%;
+  line-height:    1.2rem;
   text-shadow:    0 0 5px $glow, 0 0 10px $glow, 0 0 20px $glow, 0 0 30px $glow;
-  line-height:    1.3rem;
   letter-spacing: 0.2rem;
 }
 
@@ -87,20 +85,22 @@ a:hover {
 
 
 .profile {
-  float: left;
-  width: 140px;
+  float:  left;
+  width:  140px;
   margin: 0 1rem 0.2rem 0;
 }
 
+
 @media screen and (max-width: 600px) {
   .profile {
-    width: 70px;
+    width:  70px;
     margin: 0 0.5rem 0.2rem 0;
   }
 }
 
+
 footer {
   margin-top: 2rem;
-  font-size: 60%;
+  font-size:  60%;
   text-align: center;
 }
