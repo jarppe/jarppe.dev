@@ -12,10 +12,9 @@ let width    = 0,
     maxStars = 0
 
 export const setSize = (w: number, h: number) => {
-  width = w / 2
-  height = h / 2
+  width = w
+  height = h
   maxStars = (width / 30) * (height / 30) * 0.1
-  console.log("setSize", width, "x", height)
 }
 
 const starPolygon = (r: number) => new Polygon(

@@ -7,7 +7,7 @@ import { tick, setSize } from "./stage"
 const renderer = new PIXI.Renderer({
   width:           window.innerWidth,
   height:          window.innerHeight,
-  resolution:      window.devicePixelRatio || 1,
+  resolution:      1,
   backgroundAlpha: 0.0,
   antialias:       true,
 })
