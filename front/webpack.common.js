@@ -1,8 +1,8 @@
 const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
-  entry:     "./src/index.ts",
-  module:    {
+  entry:   "./src/index.ts",
+  module:  {
     rules: [
       {
         test:    /\.tsx?$/,
@@ -30,13 +30,10 @@ module.exports = {
       },
     ],
   },
-  resolve:   {
+  resolve: {
     extensions: [".ts", ".js"],
   },
-  externals: {
-    "pixi.js": "PIXI",
-  },
-  plugins:   [
+  plugins: [
     new CopyPlugin({
       patterns: [
         { from: "src/static", to: "static" },

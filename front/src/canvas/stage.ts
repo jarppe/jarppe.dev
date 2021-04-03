@@ -20,18 +20,24 @@ export const setSize = (w: number, h: number) => {
 const starPolygon = (r: number) => new Polygon(
     Array
         .from(Array(10).keys())
-        .map(n => [n * (Math.PI * 2) / 10, n & 0x1 ? r : r * 0.4])
-        .map(([a, r]) => new Point(r * cos(a), r * sin(a))))
+        .map(n => [
+          n * (Math.PI * 2) / 10,
+          n & 0x1 ? r : r * 0.4])
+        .map(([a, r]) => new Point(
+            r * cos(a),
+            r * sin(a))))
 
 const stage = new Container()
 
 
-const darker = (c: number, v: number) => {
-  const k = v,
-        r = ((c >> 16) & 0xff) * k,
-        g = ((c >> 8) & 0xff) * k,
-        b = (c & 0xff) * k
-  return ((r & 0xff) << 16) | ((g  & 0xff) << 8) | (b & 0xff)
+const darker = (color: number, k: number) => {
+  const r = ((color >> 16) & 0xff) * k,
+        g = ((color >> 8) & 0xff) * k,
+        b = (color & 0xff) * k
+  return (
+      ((r & 0xff) << 16) |
+      ((g & 0xff) << 8) |
+      (b & 0xff))
 }
 
 
@@ -74,35 +80,3 @@ export const tick = (ts: number): Container => {
   }
   return stage
 }
-
-
-//   const s = Math.sin(count),
-//         c = Math.cos(count),
-//         a = 120,
-//         b = 100,
-//         m = 20,
-//         sm = s * m,
-//         cm = c * m,
-//         r = 5
-//
-//   count += 0.02;
-//
-//   g.clear();
-//   g.lineStyle(1, 0x007F26, 0.3);
-//
-//   g.moveTo(-a + sm, -b + cm);
-//   g.lineTo(a + cm, -b + sm);
-//   g.lineTo(a + sm, b + cm);
-//   g.lineTo(-a + cm, b + sm);
-//   g.closePath();
-//
-//   g.beginFill(0x00ef56, 0.3);
-//   g.drawCircle(-a + sm, -b + cm, r)
-//   g.drawCircle(a + cm, -b + sm, r)
-//   g.drawCircle(a + sm, b + cm, r)
-//   g.drawCircle(-a + cm, b + sm, r)
-//   g.endFill()
-//
-//   g.rotation = count * 0.2;
-
-

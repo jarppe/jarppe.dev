@@ -1,56 +1,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+
 * {
-  padding:    0;
-  margin:     0;
-  border:     none;
-  box-sizing: border-box;
+  padding:        0;
+  margin:         0;
+  border:         none;
+  box-sizing:     border-box;
+  border:         0;
+  font:           inherit;
+  vertical-align: baseline;
 }
 
 
 $front: #00ef56;
 $glow:  #007F26;
-$star:  #807102;
-
-@mixin crt {
-  color:          $front;
-  font-family:    "Press Start 2P", monospace;
-  font-size:      90%;
-  line-height:    1.2rem;
-  text-shadow:    0 0 5px $glow, 0 0 10px $glow, 0 0 20px $glow, 0 0 30px $glow;
-  letter-spacing: 0.2rem;
-}
 
 
 body {
-  @include crt;
-  background: #001005;
-  position:   relative;
-}
-
-
-#canvasHolder {
-  position: absolute;
-  top:      0;
-  left:     0;
-  height:   100vh;
-  width:    100vw;
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  color:          $front;
+  background:     #001005;
+  font-family:    "Press Start 2P", monospace;
+  text-shadow:    0 0 5px $glow, 0 0 10px $glow, 0 0 20px $glow, 0 0 30px $glow;
+  letter-spacing: 0.2rem;
+  line-height:    1.3rem;
+  font-size:      12px;
 }
 
 
 section {
-  position:       absolute;
-  top:            3rem;
   display:        flex;
   flex-direction: column;
-  align-items:    center;
-  width:          100%;
+  align-items:    stretch;
+  top:            3rem;
   padding:        0 3rem;
+  max-width:      960px;
+  width:          100%;
 
-  > * {
-    @include crt;
-    width:     100%;
-    max-width: 960px;
+  p:empty {
+    padding-bottom: 1.6rem;
+  }
+}
+
+
+@keyframes cursor {
+  0% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.prompt {
+  display:        flex;
+  flex-direction: row;
+
+  span {
+    white-space: pre;
+  }
+
+  span::after {
+    content:          "\a0";
+    background-color: $front;
+    box-shadow:       0 0 5px $glow, 0 0 10px $glow, 0 0 20px $glow, 0 0 30px $glow;
+    animation:        cursor 1.5s infinite;
   }
 }
 
@@ -59,16 +85,6 @@ section {
   section {
     padding: 0 1rem;
   }
-}
-
-
-p {
-  margin-bottom: 1rem;
-}
-
-
-h1 {
-  padding: 2rem 0;
 }
 
 
@@ -81,26 +97,4 @@ a, a:visited, a:active {
 
 a:hover {
   border-bottom-style: solid;
-}
-
-
-.profile {
-  float:  left;
-  width:  140px;
-  margin: 0 1rem 0.2rem 0;
-}
-
-
-@media screen and (max-width: 600px) {
-  .profile {
-    width:  70px;
-    margin: 0 0.5rem 0.2rem 0;
-  }
-}
-
-
-footer {
-  margin-top: 2rem;
-  font-size:  60%;
-  text-align: center;
 }

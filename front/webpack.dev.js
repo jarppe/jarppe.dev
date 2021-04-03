@@ -7,10 +7,7 @@ module.exports = merge(common, {
   mode:      "development",
   plugins:   [
     new HtmlWebpackPlugin({
-      favicon:            "./src/assets/favicon.ico",
-      templateParameters: {
-        "pixi": "pixi.js",
-      },
+      favicon: "./src/assets/favicon.ico",
     }),
   ],
   devtool:   "inline-source-map",

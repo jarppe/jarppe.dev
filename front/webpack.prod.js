@@ -8,10 +8,7 @@ module.exports = merge(common, {
   mode:    "production",
   plugins: [
     new HtmlWebpackPlugin({
-      favicon:            "./src/assets/favicon.ico",
-      templateParameters: {
-        "pixi": "pixi.min.js",
-      },
+      favicon: "./src/assets/favicon.ico",
     }),
   ],
   output:  {
