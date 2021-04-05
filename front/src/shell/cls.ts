@@ -5,5 +5,5 @@ import { register } from "./command"
 register({
   name:        "CLS",
   description: "Clear screen",
-  execute:     (command, [theme]) => clear(),
+  execute:     async (command, [theme]) => clear(),
 })

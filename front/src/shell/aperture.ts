@@ -31,7 +31,5 @@ register({
   date:        new Date("1984-10-25T10:00:00Z"),
   size:        12908,
   description: "Show owner logo",
-  execute:     (command: string, args: string[]) => {
-    print(message)
-  },
+  execute:     async (command: string, args: string[]) => print(message),
 })
