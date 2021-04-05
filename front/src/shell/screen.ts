@@ -16,24 +16,36 @@ export const print = (...output: (string | string[])[]) => {
 }
 
 
+const ttyElement = document.getElementById("tty")!
 const historyElement = document.getElementById("history")!
 const bufferElement = document.getElementsByClassName("buffer")[0] as HTMLElement
 
 
-let line = ""
+let maxHistory = Math.floor(ttyElement.offsetHeight / 25),
+    line       = ""
+
+
+ttyElement.addEventListener("resize", () => {
+  maxHistory = Math.floor(ttyElement.offsetHeight / 25)
+  while (historyElement.childElementCount > maxHistory) {
+    historyElement.removeChild(historyElement.firstChild!)
+  }
+})
 
 
 const appendLine = (line: string) => {
-  const p = document.createElement("p"),
-        height = window.innerHeight,
-        maxLines = Math.floor(height / 24)
-  p.innerText = line
-  historyElement.appendChild(p)
-  if (historyElement.childElementCount > maxLines) {
+  console.log(
+      "maxHistory", maxHistory,
+      "current", historyElement.childElementCount,
+      "height", ttyElement.offsetHeight)
+  if (historyElement.childElementCount > maxHistory) {
     historyElement.removeChild(historyElement.firstChild!)
   }
+  const p = document.createElement("p")
+  p.innerText = line
+  historyElement.appendChild(p)
 }
-window.innerHeight
+
 
 const append = (s: string | Symbol) => {
   switch (s) {
@@ -77,3 +89,8 @@ export const setTurbo = (on: boolean) => {
 }
 
 
+export const clear = () => {
+  for (let c = historyElement.firstChild; c != null; c = historyElement.firstChild) {
+    historyElement.removeChild(c)
+  }
+}

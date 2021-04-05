@@ -74,34 +74,52 @@
 }
 
 
+html {
+  width:  100%;
+  height: 100%;
+}
+
+
 body {
   display:        flex;
   flex-direction: column;
   align-items:    center;
+  align-content:  stretch;
   font-family:    "Press Start 2P", monospace;
   letter-spacing: 0.2rem;
   line-height:    1.3rem;
   font-size:      12px;
+  width:          100%;
+  height:         100%;
 }
 
 
 section {
+  flex-grow:      1;
   display:        flex;
   flex-direction: column;
   align-items:    stretch;
   top:            3rem;
-  padding:        0 3rem;
+  padding:        1rem 2rem;
   max-width:      960px;
   width:          100%;
+}
 
-  p:empty {
-    padding-bottom: 1.6rem;
+
+@media screen and (max-width: 800px) {
+  section {
+    padding: 1rem 0;
   }
 }
 
 
 p, span {
   white-space: pre;
+}
+
+
+p:empty {
+  padding-bottom: 1.6rem;
 }
 
 
@@ -133,13 +151,6 @@ p, span {
 .buffer::after {
   content:   "\a0";
   animation: cursor 1.5s infinite;
-}
-
-
-@media screen and (max-width: 480px) {
-  section {
-    padding: 0 1rem;
-  }
 }
 
 

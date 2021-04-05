@@ -1,4 +1,6 @@
 import { print } from "./screen"
+import { register } from "./command"
+
 
 const message = [
   "              .,-:;//;:=,\n",
@@ -24,6 +26,12 @@ const message = [
 ]
 
 
-export const aperture = (command: string, args: string[]) => {
-  print(message)
-}
+register({
+  name:        "LOGO",
+  date:        new Date("1984-10-25T10:00:00Z"),
+  size:        12908,
+  description: "Show owner logo",
+  execute:     (command: string, args: string[]) => {
+    print(message)
+  },
+})
