@@ -12,18 +12,73 @@
 }
 
 
-$front: #00ef56;
-$glow:  #007F26;
+.theme-classic {
+  color:       #00ef56;
+  background:  #001005;
+  text-shadow: 0 0 5px #007F26,
+               0 0 10px #007F26,
+               0 0 20px #007F26,
+               0 0 30px #007F26;
+}
+
+
+.theme-classic .buffer::after {
+  background-color: #00ef56;
+  box-shadow:       0 0 5px #007F26,
+                    0 0 10px #007F26,
+                    0 0 20px #007F26,
+                    0 0 30px #007F26;
+}
+
+
+.theme-race {
+  color:       #e50e27;
+  background:  #1e080a;
+  text-shadow: 0 0 5px #7e000d,
+               0 0 10px #7e000d,
+               0 0 20px #7e000d,
+               0 0 30px #7e000d;
+}
+
+
+.theme-race .buffer::after {
+  background-color: #e50e27;
+  box-shadow:       0 0 5px #7e000d,
+                    0 0 10px #7e000d,
+                    0 0 20px #7e000d,
+                    0 0 30px #7e000d;
+}
+
+
+.theme-amber {
+  color:       #CCAE31;
+  background:  repeating-linear-gradient(
+                       #171406 0px,
+                       #171406 3px,
+                       #141303 6px,
+                       #141303 9px,
+                       #171406 12px);
+  text-shadow: 0 0 5px #645410,
+               0 0 10px #645410,
+               0 0 20px #645410,
+               0 0 30px #645410;
+}
+
+
+.theme-amber .buffer::after {
+  background-color: #CCAE31;
+  box-shadow:       0 0 5px #645410,
+                    0 0 10px #645410,
+                    0 0 20px #645410,
+                    0 0 30px #645410;
+}
 
 
 body {
   display:        flex;
   flex-direction: column;
   align-items:    center;
-  color:          $front;
-  background:     #001005;
   font-family:    "Press Start 2P", monospace;
-  text-shadow:    0 0 5px $glow, 0 0 10px $glow, 0 0 20px $glow, 0 0 30px $glow;
   letter-spacing: 0.2rem;
   line-height:    1.3rem;
   font-size:      12px;
@@ -42,6 +97,11 @@ section {
   p:empty {
     padding-bottom: 1.6rem;
   }
+}
+
+
+p, span {
+  white-space: pre;
 }
 
 
@@ -67,17 +127,12 @@ section {
 .prompt {
   display:        flex;
   flex-direction: row;
+}
 
-  span {
-    white-space: pre;
-  }
 
-  span::after {
-    content:          "\a0";
-    background-color: $front;
-    box-shadow:       0 0 5px $glow, 0 0 10px $glow, 0 0 20px $glow, 0 0 30px $glow;
-    animation:        cursor 1.5s infinite;
-  }
+.buffer::after {
+  content:   "\a0";
+  animation: cursor 1.5s infinite;
 }
 
 

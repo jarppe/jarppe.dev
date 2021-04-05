@@ -1,6 +1,6 @@
 import { print } from "./screen"
 import { InputHandler, Input } from "./input"
-
+import { execute } from "./os"
 
 const prompt = "C:\\> "
 let command = ""
@@ -22,11 +22,11 @@ export const cmd = (): InputHandler => {
         }
         return
       case "Enter":
+        print("Enter")
         if (command.length > 0) {
-
-          console.log("execute:", command)
+          execute(command)
         }
-        print("Enter", [prompt])
+        print([prompt])
         command = ""
         return
     }

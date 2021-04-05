@@ -97,12 +97,6 @@ let konami = 0
 
 document.addEventListener("keydown", (e) => {
   let key = e.key
-  if (key === "Backspace" && e.ctrlKey && e.metaKey) {
-    key = "CtrlAltDel"
-  }
-  if (key === "c" && e.ctrlKey) {
-    key = "Clear"
-  }
   if (key === konamiCode[konami]) {
     konami++
     console.log("konami", konami)
@@ -112,6 +106,15 @@ document.addEventListener("keydown", (e) => {
     }
   } else {
     konami = 0
+  }
+  if (e.ctrlKey || e.metaKey) {
+    if (key === "Backspace" && e.ctrlKey && e.metaKey) {
+      key = "CtrlAltDel"
+    } else if (key === "c" && e.ctrlKey) {
+      key = "Clear"
+    } else {
+      return
+    }
   }
   const handler = eventHandlers.get(key) ?? unknownKey
   return handler(e)
