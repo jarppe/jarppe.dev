@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "webpack --config webpack.prod.js",
+    "build": "yarn generate && webpack --config webpack.prod.js",
     "dev": "webpack serve --config webpack.dev.js",
     "generate": "node ./generate-files.mjs"
   },
