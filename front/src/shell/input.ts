@@ -17,10 +17,10 @@ export type Type = |
 export type Input = [Type] | ["Key", string]
 
 
-export type InputHandler = (s: Input) => void
+export type InputHandler = (s: Input) => Promise<void>
 
 
-type EventHandler = (e: KeyboardEvent) => void
+type EventHandler = (e: KeyboardEvent) => Promise<void>
 
 
 let handler: InputHandler | null = null
@@ -29,17 +29,17 @@ let handler: InputHandler | null = null
 export const setHandler = (h: InputHandler | null) => handler = h
 
 
-const handleKey = (e: KeyboardEvent) => {
+const handleKey = async (e: KeyboardEvent) => {
   e.preventDefault()
-  if (handler) handler(["Key", e.key])
   click()
+  if (handler) await handler(["Key", e.key])
 }
 
 
-const handleSpecial = (e: KeyboardEvent) => {
+const handleSpecial = async (e: KeyboardEvent) => {
   e.preventDefault()
-  if (handler) handler([e.key as Type])
   click()
+  if (handler) await handler([e.key as Type])
 }
 
 
@@ -53,7 +53,7 @@ const eventHandlers = new Map<string, EventHandler>([
   ["ArrowDown", handleSpecial],
   ["ArrowLeft", handleSpecial],
   ["ArrowRight", handleSpecial],
-  ["Ctrl-C", (e: KeyboardEvent) => {
+  ["Ctrl-C", async (e: KeyboardEvent) => {
     e.preventDefault()
     if (handler) handler(["Ctrl-C"])
     click()
@@ -66,7 +66,7 @@ for (let c = 32; c < 127; c++) {
 }
 
 
-const unknownKey = (e: KeyboardEvent) => {
+const unknownKey = async (e: KeyboardEvent) => {
   e.preventDefault()
   error()
 }
@@ -89,7 +89,7 @@ const konamiCode = [
 let konamiState = 0
 
 
-document.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", async (e) => {
   let key = e.key
   if (key === konamiCode[konamiState]) {
     konamiState++
@@ -111,5 +111,5 @@ document.addEventListener("keydown", (e) => {
     }
   }
   const handler = eventHandlers.get(key) ?? unknownKey
-  return handler(e)
+  await handler(e)
 })

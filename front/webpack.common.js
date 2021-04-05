@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
@@ -23,20 +24,16 @@ module.exports = {
           "sass-loader",
         ],
       },
-      {
-        test:    /\.(woff2?|ttf|otf|eot|svg)$/,
-        exclude: /node_modules/,
-        type:    "asset/resource",
-      },
     ],
   },
   resolve: {
     extensions: [".ts", ".js"],
   },
   plugins: [
+    new HtmlWebpackPlugin(),
     new CopyPlugin({
       patterns: [
-        { from: "src/static", to: "static" },
+        { from: "assets", to: "." },
       ],
     }),
   ],

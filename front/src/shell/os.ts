@@ -1,16 +1,10 @@
 import { print } from "./screen"
 import { error } from "../sound"
 import { getCommand } from "./command"
-import "./help"
-import "./dir"
-import "./aperture"
-import "./not-unix"
-import "./theme"
-import "./turbo"
-import "./cls"
+import "./commands"
 
 
-export const execute = (commandLine: string) => {
+export const execute = async (commandLine: string) => {
   const [c, ...args] = commandLine.trim().split(/\s+/),
         commandName  = c.toUpperCase(),
         command      = getCommand(commandName)
@@ -19,5 +13,5 @@ export const execute = (commandLine: string) => {
     print(["Error: Unknown command. Try 'HELP'\n"])
     return
   }
-  command.execute(commandName, args)
+  await command.execute(commandName, args)
 }

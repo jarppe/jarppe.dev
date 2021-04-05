@@ -1,6 +1,9 @@
-import { Command, ExternalCommand, isExternalCommand } from "./types"
+import { File } from "../files"
+import { Command } from "./types"
 
-export const commands = new Map<string, Command>()
+
+const commands = new Map<string, Command>()
+
 
 export const register = (command: Command) => {
   commands.set(command.name, command)
@@ -10,13 +13,15 @@ export const register = (command: Command) => {
 export const getCommand = (commandName: string) => commands.get(commandName)
 
 
-export const listCommands = (): Command[] => {
+export const listCommands = () => commands.values()
+
+
+export const commandFiles = (): File[] => {
   return Array.from(commands.values())
-      .filter(c => c.secret !== true)
-      .sort((a, b) => a.name.localeCompare(b.name))
-}
-
-
-export const listExternalCommands = (): ExternalCommand[] => {
-  return listCommands().filter(c => isExternalCommand(c)) as ExternalCommand[]
+      .filter(c => c.secret !== true && c.date && c.size )
+      .map(({ name, size, date }) => ({
+        name: name + ".EXE",
+        size: size!,
+        date: date!
+      }))
 }

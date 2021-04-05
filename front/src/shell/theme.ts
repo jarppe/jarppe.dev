@@ -19,7 +19,7 @@ register({
   description: "Set CRT theme",
   date:        new Date("1984-06-18T04:12:00Z"),
   size:        62914,
-  execute:     (command, [theme]) => {
+  execute:     async (command, [theme]) => {
     if (theme) {
       const t = theme.toUpperCase()
       if (!themes.includes(t)) {

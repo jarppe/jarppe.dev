@@ -3,7 +3,7 @@ import { CommandExec } from "./types"
 import { register } from "./command"
 
 
-const turbo: CommandExec = (command, [turbo]) => {
+const turbo: CommandExec = async (command, [turbo]) => {
   if (turbo == null) {
     print(["Turbo is ", isTurbo() ? "ON" : "OFF", "\n"])
     return

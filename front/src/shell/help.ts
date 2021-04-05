@@ -1,18 +1,16 @@
 import { print } from "./screen"
 import { CommandExec } from "./types"
 import { register, listCommands } from "./command"
-import { format } from "date-fns"
 
 
-const numberFormat = new Intl.NumberFormat("en-US")
-
-
-const help: CommandExec = (command, args) => {
+const help: CommandExec = async (command, args) => {
   print(["Available commands:\n"])
-  for (const { name, description } of listCommands()) {
-    print([name.padStart(10, " ")])
-    print([" .... "])
-    print([description, "\n"])
+  for (const { name, description, secret } of listCommands()) {
+    if (secret !== true) {
+      print([name.padStart(10, " ")])
+      print([" .... "])
+      print([description, "\n"])
+    }
   }
 }
 

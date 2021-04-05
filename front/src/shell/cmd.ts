@@ -10,7 +10,7 @@ let prevCommand: string | null = null,
 export const cmd = (): InputHandler => {
   print([prompt])
   command = ""
-  return ([type, ch]: Input) => {
+  return async ([type, ch]: Input) => {
     switch (type) {
       case "Key":
         command += ch
@@ -37,7 +37,7 @@ export const cmd = (): InputHandler => {
         print("Enter")
         if (command.length > 0) {
           prevCommand = command
-          execute(command)
+          await execute(command)
         }
         print([prompt])
         command = ""

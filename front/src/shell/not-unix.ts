@@ -2,7 +2,7 @@ import { print } from "./screen"
 import { register } from "./command"
 
 
-const notUnix = () => {
+const notUnix = async () => {
   print(["You have mistaken me as Unix system\n"])
 }
 

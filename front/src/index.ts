@@ -1,4 +1,4 @@
 import "./index.scss"
-import "./assets/favicon.ico"
+import "./files"
 import "./console"
 import "./shell"

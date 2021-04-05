@@ -70,18 +70,20 @@ const process = () => {
 }
 
 
-let DELAY = Number.parseInt(window.localStorage.getItem("screen:delay") ?? "10")
+let turbo = window.localStorage.getItem("screen:turbo") === "ON"
+let DELAY = turbo ? 1 : 10
 let interval = setInterval(process, DELAY)
 
 
-export const isTurbo = () => DELAY === 3
+export const isTurbo = () => turbo
 
 
-export const setTurbo = (on: boolean) => {
-  DELAY = on ? 3 : 10
-  window.localStorage.setItem("screen:delay", DELAY.toString(10))
+export const setTurbo = (t: boolean) => {
+  turbo = t
+  window.localStorage.setItem("screen:turbo", turbo ? "ON" : "OFF")
+  DELAY = turbo ? 1 : 10
   clearInterval(interval)
-  setInterval(process, DELAY)
+  interval = setInterval(process, DELAY)
 }
 
 
