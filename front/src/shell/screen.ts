@@ -34,10 +34,6 @@ ttyElement.addEventListener("resize", () => {
 
 
 const appendLine = (line: string) => {
-  console.log(
-      "maxHistory", maxHistory,
-      "current", historyElement.childElementCount,
-      "height", ttyElement.offsetHeight)
   if (historyElement.childElementCount > maxHistory) {
     historyElement.removeChild(historyElement.firstChild!)
   }

@@ -3,7 +3,8 @@ import { InputHandler, Input } from "./input"
 import { execute } from "./os"
 
 const prompt = "C:\\> "
-let command = ""
+let prevCommand: string | null = null,
+    command = ""
 
 
 export const cmd = (): InputHandler => {
@@ -14,21 +15,33 @@ export const cmd = (): InputHandler => {
       case "Key":
         command += ch
         print(ch!)
-        return
+        break
+      case "Ctrl-C":
+        command = ""
+        print(["^C"], "Enter", [prompt])
+        break
       case "Backspace":
         if (command.length > 0) {
           command = command.slice(0, -1)
           print(type)
         }
-        return
+        break
+      case "ArrowUp":
+        if (prevCommand) {
+          command = prevCommand
+          prevCommand = null
+          print("Enter", [prompt, command])
+        }
+        break
       case "Enter":
         print("Enter")
         if (command.length > 0) {
+          prevCommand = command
           execute(command)
         }
         print([prompt])
         command = ""
-        return
+        break
     }
   }
 }
