@@ -1,4 +1,5 @@
 import { click, error } from "../sound"
+import { print } from "./screen"
 
 
 export type Type = |
@@ -23,23 +24,36 @@ export type InputHandler = (s: Input) => Promise<void>
 type EventHandler = (e: KeyboardEvent) => Promise<void>
 
 
-let handler: InputHandler | null = null
+const handlerStack: InputHandler[] = []
 
 
-export const setHandler = (h: InputHandler | null) => handler = h
+export const pushHandler = (h: InputHandler) => {
+  handlerStack.unshift(h)
+}
+
+
+export const popHandler = () => {
+  handlerStack.shift()
+}
+
+
+const deliver = (s: Input) => {
+  const handler = handlerStack[0]
+  if (handler) handler(s)
+}
 
 
 const handleKey = async (e: KeyboardEvent) => {
   e.preventDefault()
   click()
-  if (handler) await handler(["Key", e.key])
+  deliver(["Key", e.key])
 }
 
 
 const handleSpecial = async (e: KeyboardEvent) => {
   e.preventDefault()
   click()
-  if (handler) await handler([e.key as Type])
+  deliver([e.key as Type])
 }
 
 
@@ -55,8 +69,8 @@ const eventHandlers = new Map<string, EventHandler>([
   ["ArrowRight", handleSpecial],
   ["Ctrl-C", async (e: KeyboardEvent) => {
     e.preventDefault()
-    if (handler) handler(["Ctrl-C"])
     click()
+    deliver(["Ctrl-C"])
   }],
 ])
 
@@ -103,13 +117,14 @@ document.addEventListener("keydown", async (e) => {
   if (e.ctrlKey || e.metaKey) {
     if (key === "c" && e.ctrlKey) {
       key = "Ctrl-C"
-    } else if (key === "Backspace" && e.ctrlKey && e.metaKey) {
-      console.log("Ctrl-Alt-Del") // TODO: Do some reboot shit
+    } else if (key === "Backspace" && e.ctrlKey && (e.metaKey || e.altKey)) {
+      print(["\nSystem rebooting..."])
+      setTimeout(() => window.location.reload(), 2000)
       return
     } else {
       return
     }
   }
-  const handler = eventHandlers.get(key) ?? unknownKey
-  await handler(e)
+  const eventHandler = eventHandlers.get(key) ?? unknownKey
+  await eventHandler(e)
 })

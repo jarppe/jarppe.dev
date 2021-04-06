@@ -1,16 +1,34 @@
 import { print } from "./screen"
-import { InputHandler, Input } from "./input"
+import { sleep } from "./util"
+import { Input, pushHandler } from "./input"
 import { execute } from "./os"
+
 
 const prompt = "C:\\> "
 let prevCommand: string | null = null,
     command = ""
 
 
-export const cmd = (): InputHandler => {
+export const cmd = async () => {
+  await sleep(1000)
+  print([
+    "Loading BIOS...",
+  ])
+  await sleep(2000)
+  print([
+    "\nAperture Professional Computer - BIOS 1.337\n",
+    "Copyright Aperture Laboratories, Inc., 1982\n",
+    "\n"
+  ])
+  await sleep(2000)
+  print([
+    "MS-DOS v2.02a\n",
+    "Copyright Microsoft Corp., 1981\n",
+    "\n"])
+  await sleep(1500)
   print([prompt])
   command = ""
-  return async ([type, ch]: Input) => {
+  pushHandler(async ([type, ch]: Input) => {
     switch (type) {
       case "Key":
         command += ch
@@ -43,5 +61,5 @@ export const cmd = (): InputHandler => {
         command = ""
         break
     }
-  }
+  })
 }

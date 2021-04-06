@@ -61,30 +61,38 @@ const append = (s: string | Symbol) => {
   bufferElement.innerText = line
 }
 
+const TURBO_OFF_SPEED = 3,
+      TURBO_ON_SPEED = 6
+
+let processCount = 0
+
+
+export const isTurbo = () => window.localStorage.getItem("screen:turbo") === "ON"
+
+
+export const setTurbo = (turbo: boolean) => {
+  window.localStorage.setItem("screen:turbo", turbo ? "ON" : "OFF")
+  processCount = turbo ? TURBO_ON_SPEED : TURBO_OFF_SPEED
+}
+
+
+setTurbo(isTurbo())
+
 
 const process = () => {
-  const s = buffer.shift()
-  if (s) {
-    append(s)
+  for (let i = 0; i < processCount; i++) {
+    const s = buffer.shift()
+    if (s) {
+      append(s)
+    } else {
+      break
+    }
   }
+  requestAnimationFrame(process)
 }
 
 
-let turbo = window.localStorage.getItem("screen:turbo") === "ON"
-let DELAY = turbo ? 1 : 10
-let interval = setInterval(process, DELAY)
-
-
-export const isTurbo = () => turbo
-
-
-export const setTurbo = (t: boolean) => {
-  turbo = t
-  window.localStorage.setItem("screen:turbo", turbo ? "ON" : "OFF")
-  DELAY = turbo ? 1 : 10
-  clearInterval(interval)
-  interval = setInterval(process, DELAY)
-}
+process()
 
 
 export const clear = () => {
