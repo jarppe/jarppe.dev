@@ -1,0 +1,18 @@
+.theme-prince {
+  color:       #8319cf;
+  background:  repeating-linear-gradient(
+                       #2c0547 0px,
+                       #2c0547 6px,
+                       #2d0747 12px,
+                       #2d0747 18px,
+                       #2c0547 24px);
+  text-shadow: 0 0 5px #882cca,
+               0 0 10px #882cca;
+}
+
+
+.theme-prince .buffer::after {
+  background-color: #8319cf;
+  box-shadow:       0 0 5px #882cca,
+                    0 0 10px #882cca;
+}

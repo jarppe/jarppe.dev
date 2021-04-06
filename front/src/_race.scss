@@ -1,0 +1,17 @@
+.theme-race {
+  color:       #e50e27;
+  background:  #1e080a;
+  text-shadow: 0 0 5px #7e000d,
+               0 0 10px #7e000d,
+               0 0 20px #7e000d,
+               0 0 30px #7e000d;
+}
+
+
+.theme-race .buffer::after {
+  background-color: #e50e27;
+  box-shadow:       0 0 5px #7e000d,
+                    0 0 10px #7e000d,
+                    0 0 20px #7e000d,
+                    0 0 30px #7e000d;
+}

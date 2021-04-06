@@ -67,11 +67,11 @@ const TURBO_OFF_SPEED = 3,
 let processCount = 0
 
 
-export const isTurbo = () => window.localStorage.getItem("screen:turbo") === "ON"
+export const isTurbo = () => window.localStorage.getItem("jarppe.dev:turbo") === "ON"
 
 
 export const setTurbo = (turbo: boolean) => {
-  window.localStorage.setItem("screen:turbo", turbo ? "ON" : "OFF")
+  window.localStorage.setItem("jarppe.dev:turbo", turbo ? "ON" : "OFF")
   processCount = turbo ? TURBO_ON_SPEED : TURBO_OFF_SPEED
 }
 

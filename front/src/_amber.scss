@@ -1,0 +1,22 @@
+.theme-amber {
+  color:       #CCAE31;
+  background:  repeating-linear-gradient(
+                       #171406 0px,
+                       #171406 3px,
+                       #141303 6px,
+                       #141303 9px,
+                       #171406 12px);
+  text-shadow: 0 0 5px #645410,
+               0 0 10px #645410,
+               0 0 20px #645410,
+               0 0 30px #645410;
+}
+
+
+.theme-amber .buffer::after {
+  background-color: #CCAE31;
+  box-shadow:       0 0 5px #645410,
+                    0 0 10px #645410,
+                    0 0 20px #645410,
+                    0 0 30px #645410;
+}

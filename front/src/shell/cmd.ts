@@ -9,12 +9,15 @@ let prevCommand: string | null = null,
     command = ""
 
 
-export const cmd = async () => {
+const boot = async () => {
   await sleep(1000)
-  print([
-    "Loading BIOS...",
-  ])
-  await sleep(2000)
+  print(["Loading BIOS"])
+  for (let n = 0; n < 5; n++) {
+    await sleep(1000)
+    print(["."])
+  }
+  print("Enter")
+  await sleep(1000)
   print([
     "\nAperture Professional Computer - BIOS 1.337\n",
     "Copyright Aperture Laboratories, Inc., 1982\n",
@@ -26,6 +29,13 @@ export const cmd = async () => {
     "Copyright Microsoft Corp., 1981\n",
     "\n"])
   await sleep(1500)
+}
+
+
+export const cmd = async () => {
+  if (window.localStorage.getItem("jarppe.dev:boot") !== "skip") {
+    await boot()
+  }
   print([prompt])
   command = ""
   pushHandler(async ([type, ch]: Input) => {

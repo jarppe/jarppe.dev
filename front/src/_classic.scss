@@ -1,0 +1,19 @@
+.theme-classic {
+  color:       #00ef56;
+  background:  #001005;
+  text-shadow: 0 0 5px #007F26,
+               0 0 10px #007F26,
+               0 0 20px #007F26,
+               0 0 30px #007F26;
+}
+
+
+.theme-classic .buffer::after {
+  background-color: #00ef56;
+  box-shadow:       0 0 5px #007F26,
+                    0 0 10px #007F26,
+                    0 0 20px #007F26,
+                    0 0 30px #007F26;
+}
+
+

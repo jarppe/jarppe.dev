@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import "classic";
+@import "race";
+@import "amber";
+@import "prince";
 
 
 * {
@@ -9,68 +13,6 @@
   border:         0;
   font:           inherit;
   vertical-align: baseline;
-}
-
-
-.theme-classic {
-  color:       #00ef56;
-  background:  #001005;
-  text-shadow: 0 0 5px #007F26,
-               0 0 10px #007F26,
-               0 0 20px #007F26,
-               0 0 30px #007F26;
-}
-
-
-.theme-classic .buffer::after {
-  background-color: #00ef56;
-  box-shadow:       0 0 5px #007F26,
-                    0 0 10px #007F26,
-                    0 0 20px #007F26,
-                    0 0 30px #007F26;
-}
-
-
-.theme-race {
-  color:       #e50e27;
-  background:  #1e080a;
-  text-shadow: 0 0 5px #7e000d,
-               0 0 10px #7e000d,
-               0 0 20px #7e000d,
-               0 0 30px #7e000d;
-}
-
-
-.theme-race .buffer::after {
-  background-color: #e50e27;
-  box-shadow:       0 0 5px #7e000d,
-                    0 0 10px #7e000d,
-                    0 0 20px #7e000d,
-                    0 0 30px #7e000d;
-}
-
-
-.theme-amber {
-  color:       #CCAE31;
-  background:  repeating-linear-gradient(
-                       #171406 0px,
-                       #171406 3px,
-                       #141303 6px,
-                       #141303 9px,
-                       #171406 12px);
-  text-shadow: 0 0 5px #645410,
-               0 0 10px #645410,
-               0 0 20px #645410,
-               0 0 30px #645410;
-}
-
-
-.theme-amber .buffer::after {
-  background-color: #CCAE31;
-  box-shadow:       0 0 5px #645410,
-                    0 0 10px #645410,
-                    0 0 20px #645410,
-                    0 0 30px #645410;
 }
 
 
