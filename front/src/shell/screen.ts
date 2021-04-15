@@ -25,8 +25,9 @@ let maxHistory = Math.floor(ttyElement.offsetHeight / 25),
     line       = ""
 
 
-ttyElement.addEventListener("resize", () => {
+window.addEventListener("resize", () => {
   maxHistory = Math.floor(ttyElement.offsetHeight / 25)
+  console.log(`resize: height: ${ ttyElement.offsetHeight }, history: ${ maxHistory }` )
   while (historyElement.childElementCount > maxHistory) {
     historyElement.removeChild(historyElement.firstChild!)
   }
