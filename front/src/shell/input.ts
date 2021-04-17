@@ -2,7 +2,7 @@ import { click, error } from "../sound"
 import { print } from "./screen"
 
 
-export type Type = |
+export type InputType = |
     "Space" |
     "Enter" |
     "Backspace" |
@@ -15,7 +15,7 @@ export type Type = |
     "ArrowRight"
 
 
-export type Input = [Type] | ["Key", string]
+export type Input = [InputType] | ["Key", string]
 
 
 export type InputHandler = (s: Input) => Promise<void>
@@ -53,7 +53,7 @@ const handleKey = async (e: KeyboardEvent) => {
 const handleSpecial = async (e: KeyboardEvent) => {
   e.preventDefault()
   click()
-  deliver([e.key as Type])
+  deliver([e.key as InputType])
 }
 
 
@@ -67,6 +67,7 @@ const eventHandlers = new Map<string, EventHandler>([
   ["ArrowDown", handleSpecial],
   ["ArrowLeft", handleSpecial],
   ["ArrowRight", handleSpecial],
+  ["Shift", handleSpecial],
   ["Ctrl-C", async (e: KeyboardEvent) => {
     e.preventDefault()
     click()
@@ -103,7 +104,10 @@ const konamiCode = [
 let konamiState = 0
 
 
-document.addEventListener("keydown", async (e) => {
+const input = document.getElementById("input")!
+
+
+input.addEventListener("keydown", async (e) => {
   let key = e.key
   if (key === konamiCode[konamiState]) {
     konamiState++
@@ -128,3 +132,6 @@ document.addEventListener("keydown", async (e) => {
   const eventHandler = eventHandlers.get(key) ?? unknownKey
   await eventHandler(e)
 })
+
+
+document.addEventListener("click", () => input.focus())

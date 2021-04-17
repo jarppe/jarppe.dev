@@ -7,8 +7,8 @@ const help: CommandExec = async (command, args) => {
   print(["Available commands:\n"])
   for (const { name, description, secret } of listCommands()) {
     if (secret !== true) {
-      print([name.padStart(10, " ")])
-      print([" .... "])
+      print([name])
+      print([` ${ "".padEnd(10 - name.length, ".") } `])
       print([description, "\n"])
     }
   }

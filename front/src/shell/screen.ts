@@ -21,26 +21,25 @@ const historyElement = document.getElementById("history")!
 const bufferElement = document.getElementsByClassName("buffer")[0] as HTMLElement
 
 
-let maxHistory = Math.floor(ttyElement.offsetHeight / 25),
-    line       = ""
+let line = ""
 
 
-window.addEventListener("resize", () => {
-  maxHistory = Math.floor(ttyElement.offsetHeight / 25)
-  console.log(`resize: height: ${ ttyElement.offsetHeight }, history: ${ maxHistory }` )
-  while (historyElement.childElementCount > maxHistory) {
+const trimTty = () => {
+  const maxHistory = window.innerHeight
+  if (ttyElement.offsetHeight > maxHistory) {
     historyElement.removeChild(historyElement.firstChild!)
   }
-})
+}
+
+
+window.addEventListener("resize", trimTty)
 
 
 const appendLine = (line: string) => {
-  if (historyElement.childElementCount > maxHistory) {
-    historyElement.removeChild(historyElement.firstChild!)
-  }
   const p = document.createElement("p")
   p.innerText = line
   historyElement.appendChild(p)
+  trimTty()
 }
 
 
@@ -63,7 +62,7 @@ const append = (s: string | Symbol) => {
 }
 
 const TURBO_OFF_SPEED = 3,
-      TURBO_ON_SPEED = 6
+      TURBO_ON_SPEED  = 6
 
 let processCount = 0
 

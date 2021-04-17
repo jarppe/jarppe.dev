@@ -10,7 +10,7 @@ export const execute = async (commandLine: string) => {
         command      = getCommand(commandName)
   if (!command) {
     error()
-    print(["Bad command or file name\nTry HELP\n\n"])
+    print(["Bad command or file name: ", commandLine, "\n"], ["Try HELP\n\n"])
     return
   }
   await command.execute(commandName, args)
