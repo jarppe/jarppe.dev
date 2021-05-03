@@ -1,0 +1,68 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+
+html, body, div, span,
+h1, h2, p,
+form, label,
+table, tbody, tfoot, thead, tr, th, td {
+  margin:         0;
+  padding:        0;
+  border:         0;
+  font-size:      100%;
+  font:           inherit;
+  vertical-align: baseline;
+}
+
+
+body {
+  line-height: 1;
+  font-family: sans-serif;
+  padding:     2em;
+}
+
+
+h1 {
+  font-size:      200%;
+  padding-bottom: 1em;
+}
+
+
+#max {
+  margin-left: 0.5em;
+}
+
+
+table {
+  border-collapse: collapse;
+  border-spacing:  0;
+  margin-top:      2em;
+}
+
+
+tr {
+  border-bottom: 1px solid gray;
+}
+
+
+td {
+  padding: 0.4em 0;
+}
+
+
+td:nth-child(2) {
+  padding-left: 1em;
+}
+
+
+td:nth-child(3) {
+  padding: 0 0.5em;
+}
+
+
+td:nth-child(2),
+td:nth-child(4) {
+  width:      3em;
+  text-align: center;
+}
