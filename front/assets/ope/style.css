@@ -1,12 +1,8 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-
 html, body, div, span,
 h1, h2, p,
 form, label,
 table, tbody, tfoot, thead, tr, th, td {
+  box-sizing:     border-box;
   margin:         0;
   padding:        0;
   border:         0;
