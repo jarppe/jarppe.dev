@@ -1,0 +1,27 @@
+<svg width="200"
+     height="200"
+     viewBox="-100 -100 200 200"
+     version="1.1"
+     baseProfile="full"
+     xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="seg" d="M 0 0 A 100 100 0 0 1 100 100 l 0 40 A 100 100 0 0 0 0 0 z"/>
+    <g id="quad">
+      <use href="#seg" transform="rotate(0)"/>
+      <use href="#seg" transform="rotate(10)"/>
+      <use href="#seg" transform="rotate(20)"/>
+      <use href="#seg" transform="rotate(30)"/>
+      <use href="#seg" transform="rotate(40)"/>
+      <use href="#seg" transform="rotate(50)"/>
+      <use href="#seg" transform="rotate(60)"/>
+      <use href="#seg" transform="rotate(70)"/>
+      <use href="#seg" transform="rotate(80)"/>
+    </g>
+  </defs>
+  <g stroke="none" fill="black">
+    <use href="#quad" transform="rotate(0)"/>
+    <use href="#quad" transform="rotate(90)"/>
+    <use href="#quad" transform="rotate(180)"/>
+    <use href="#quad" transform="rotate(270)"/>
+  </g>
+</svg>
